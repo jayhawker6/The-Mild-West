@@ -57,7 +57,6 @@ while True:
             pressed = buttonbox("I think you know EXACTLY what you are \"Milking,\" Pardner.", title,
                                 ["Oh god...", "No really i'm clueless what is it?"])
             msgbox(data["4"], title, "I'm sorry!")
-            ohgod()
             msgbox("Anyways, Time to move on.", title, "But i'm still hungry!")
             break
 
@@ -65,7 +64,21 @@ while True:
         pressed = buttonbox("What in tarnation gave you the urge to choose that option!", title,
                             ["*Shrug*", "Nevermind..."])
         if pressed == "*Shrug*":
-            pass
+            pressed = buttonbox(data["5"], title, ["On second Thought...", "Booyah!"])
+            if pressed == "Booyah!":
+                pressed = buttonbox("Well, okay then! Guess there's no stopping you.", title,
+                                    ["Nope!", "Actually there is..."])
+                if pressed == "Nope!":
+                    msgbox("Damn you.", title, "hehehehehe")
+
+                else:
+                    msgbox(data["6"], title, "Yeah that's right, no where left for you to go :)")
+                    raise FatalSystemError("Die in a fire you wretched prick! Take that! HAHAHAHA!!!")
+            else:
+                msgbox(data["7"], title,
+                       "I guess")
+                break
         else:
-            msgbox("Yeah don't you touch that poor thing! What did it ever do to you, you monster!", title, "I guess")
+            pressed(data["7"], title,
+                    ["I guess", "It killed my family"])
             break
