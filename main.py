@@ -4,7 +4,6 @@ from easygui import *
 
 
 # Define Classes
-
 class FatalSystemError(Exception):
     def __init__(self, message="Give the class a string to work with you dummy or it defaults to this!"):
         self.message = message
@@ -24,21 +23,18 @@ def addwtff(x=1):
     msgbox(tempstr, "The Mild West", "...What the...")
 
 
-# Load Data
-f = open('json.json')
-data = json.load(f)
+def adddamage(x=1):
+    global damage
+    olddamage = damage
+    damage += x
+    tempstr = "Damage: " + str(olddamage) + " --> " + str(damage)
+    msgbox(tempstr, "The Mild West", "(Flex at the haters with your new might)")
 
-# Initialize some vars
-title = "The Mild West"
-strength = 1
-stupidity = 1
-wtff = 1
 
-# Begin the Bull
-while True:
-    buttons = ["Milk", "Slaughter", "Castrate"]
-    pressed = buttonbox(data["1"], title, buttons)
-    if pressed == "Milk":  # Chose to milk the bull
+def milkbull():
+    while True:
+        global buttons
+        global pressed
         msgbox(data["3"], title, "What")  # But something is VERY wrong
         buttons = ["I know what I'm doing!", "What do you mean?", "Ignore Narrator"]
         pressed = buttonbox("This is a bull.", title, buttons)
@@ -60,25 +56,53 @@ while True:
             msgbox("Anyways, Time to move on.", title, "But i'm still hungry!")
             break
 
-    elif pressed == "Castrate":
+
+def castratebull():
+    global pressed
+    while True:
         pressed = buttonbox("What in tarnation gave you the urge to choose that option!", title,
                             ["*Shrug*", "Nevermind..."])
-        if pressed == "*Shrug*":
+        if pressed == "*Shrug*":  # Shrugs
             pressed = buttonbox(data["5"], title, ["On second Thought...", "Booyah!"])
-            if pressed == "Booyah!":
+            if pressed == "Booyah!":  # Booyah
                 pressed = buttonbox("Well, okay then! Guess there's no stopping you.", title,
                                     ["Nope!", "Actually there is..."])
-                if pressed == "Nope!":
+                if pressed == "Nope!":  # No stopping them now
                     msgbox("Damn you.", title, "hehehehehe")
 
-                else:
-                    msgbox(data["6"], title, "Yeah that's right, no where left for you to go :)")
+                else:  # Well Actually...
+                    msgbox(data["6"], title, "Yeah that's right, no where left for you to go :)")  # It's over fool
                     raise FatalSystemError("Die in a fire you wretched prick! Take that! HAHAHAHA!!!")
-            else:
-                msgbox(data["7"], title,
-                       "I guess")
+            else:  # on second thought...
+                msgbox(data["7"], title, "I guess")
                 break
         else:
-            pressed(data["7"], title,
-                    ["I guess", "It killed my family"])
+            msgbox(data["7"], title, "Sorry!")
             break
+
+
+# Load Data
+f = open('json.json')
+data = json.load(f)
+
+# Initialize some vars
+title = "The Mild West"
+
+strength = 1
+stupidity = 1
+wtff = 1
+damage = 1
+
+# Begin the Bull shiz
+buttons = ["Milk", "Slaughter", "Castrate"]
+pressed = buttonbox(data["1"], title, buttons)
+if pressed == "Milk":  # Chose to milk the bull
+    milkbull()
+elif pressed == "Slaughter":
+    msgbox(data["8"], title, "Well that was simple.")
+    msgbox(data["9"], title, "How dare that bull do such a thing!")
+    msgbox(data["10"], title, "Cool! ... Gross!")
+    adddamage(2)
+    msgbox("Let's move on to dankwood already.", title, "As if I have a choice...")
+elif pressed == "Castrate":  # Castrate
+    castratebull()
