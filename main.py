@@ -1,4 +1,5 @@
 import json
+import time
 
 from easygui import *
 
@@ -8,6 +9,21 @@ class FatalSystemError(Exception):
     def __init__(self, message="Give the class a string to work with you dummy or it defaults to this!"):
         self.message = message
         super().__init__(self.message)
+
+
+# Load Data
+
+data = json.load(open('json.json'))
+
+# Initialize some vars
+title = "The Mild West"
+
+global pressed
+strength = 1
+stupidity = 1
+wtff = 1
+damage = 1
+bullcastrated = False
 
 
 # Define Functions
@@ -58,7 +74,6 @@ def milkbull():
 
 
 def castratebull():
-    global pressed
     while True:
         pressed = buttonbox("What in tarnation gave you the urge to choose that option!", title,
                             ["*Shrug*", "Nevermind..."])
@@ -72,7 +87,15 @@ def castratebull():
                     msgbox(data["11"], title, data["12"])
                     msgbox(data["13"], title, "Oh god I hate myself!")
                     msgbox(data["14"], title, "OH MY EARS OH PLEASE NO SPARE ME")
-                    msgbox(data["15"], title, "")
+                    msgbox(data["15"], title, "AAAAAA")
+                    msgbox(data["16"], title, "IS IT OVER YET?! PLEASE MAKE IT END!")
+                    msgbox("But it's not over.", title, "NOOOOOOOOOO END THE PAIN ALREADY!!!")
+                    msgbox("You repeat everything you just did, all over again.", title, "WHY!!!")
+                    msgbox("And it's worse, because the whole time the bull hurts more than before", title, "PLS NO!")
+                    msgbox("I think we will leave it there.", title, "Thank god.")
+                    msgbox("Let us have a moment of silence for the PTSD you gave that bull...", title, "...")
+                    time.sleep(5)
+                    msgbox("*Salutes the cow*")
                     break
 
                 else:  # Well Actually...
@@ -85,18 +108,6 @@ def castratebull():
             msgbox(data["7"], title, "Sorry!")
             break
 
-
-# Load Data
-f = open('json.json')
-data = json.load(f)
-
-# Initialize some vars
-title = "The Mild West"
-
-strength = 1
-stupidity = 1
-wtff = 1
-damage = 1
 
 # Begin the Bull shiz
 buttons = ["Milk", "Slaughter", "Castrate"]
@@ -111,3 +122,6 @@ elif pressed == "Slaughter":
     msgbox("Let's move on to dankwood already.", title, "As if I have a choice...")
 elif pressed == "Castrate":  # Castrate
     castratebull()
+if bullcastrated:
+    msgbox("So... with THAT thing over, let's move onto dankwood.", title, "Yes PLEASE.")
+msgbox("You travel forth into DankWood, with little regard for the ther things around you.")
