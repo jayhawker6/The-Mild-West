@@ -69,6 +69,11 @@ def castratebull():
                                     ["Nope!", "Actually there is..."])
                 if pressed == "Nope!":  # No stopping them now
                     msgbox("Damn you.", title, "hehehehehe")
+                    msgbox(data["11"], title, data["12"])
+                    msgbox(data["13"], title, "Oh god I hate myself!")
+                    msgbox(data["14"], title, "OH MY EARS OH PLEASE NO SPARE ME")
+                    msgbox(data["15"], title, "")
+                    break
 
                 else:  # Well Actually...
                     msgbox(data["6"], title, "Yeah that's right, no where left for you to go :)")  # It's over fool
